@@ -827,7 +827,8 @@ int put_record_batch(struct flb_firehose *ctx, struct flush *buf,
         firehose_client = ctx->firehose_client;
         c = firehose_client->client_vtable->request(firehose_client, FLB_HTTP_POST,
                                                     "/", buf->out_buf, payload_size,
-                                                    &put_record_batch_header, 1);
+                                                    &put_record_batch_header, 1,
+                                                    ctx->http_buffer_size);
     }
 
     if (c) {

@@ -203,12 +203,12 @@ REGISTER_OUT_PLUGIN("out_lib")
 REGISTER_OUT_PLUGIN("out_flowcounter")
 REGISTER_OUT_PLUGIN("out_gelf")
 REGISTER_OUT_PLUGIN("out_websocket")
-REGISTER_OUT_PLUGIN("out_cloudwatch_logs")
+#REGISTER_OUT_PLUGIN("out_cloudwatch_logs")
 REGISTER_OUT_PLUGIN("out_kinesis_firehose")
-REGISTER_OUT_PLUGIN("out_kinesis_streams")
+#REGISTER_OUT_PLUGIN("out_kinesis_streams")
 REGISTER_OUT_PLUGIN("out_prometheus_exporter")
 REGISTER_OUT_PLUGIN("out_prometheus_remote_write")
-REGISTER_OUT_PLUGIN("out_s3")
+#REGISTER_OUT_PLUGIN("out_s3")
 
 # FILTERS
 # =======
@@ -231,10 +231,6 @@ if(FLB_RECORD_ACCESSOR)
   REGISTER_FILTER_PLUGIN("filter_expect")
   REGISTER_FILTER_PLUGIN("filter_grep")
   REGISTER_FILTER_PLUGIN("filter_rewrite_tag")
-endif()
-
-if(FLB_LUAJIT)
-  REGISTER_FILTER_PLUGIN("filter_lua")
 endif()
 
 REGISTER_FILTER_PLUGIN("filter_stdout")

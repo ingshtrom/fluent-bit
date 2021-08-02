@@ -779,7 +779,7 @@ static int sts_assume_role_request(struct flb_aws_client *sts_client,
     flb_debug("[aws_credentials] Calling STS..");
 
     c = sts_client->client_vtable->request(sts_client, FLB_HTTP_GET,
-                                           uri, NULL, 0, NULL, 0);
+                                           uri, NULL, 0, NULL, 0, 0);
 
     if (c && c->resp.status == 200) {
         credentials = flb_parse_sts_resp(c->resp.payload, &expiration);

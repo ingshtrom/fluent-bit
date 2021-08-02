@@ -45,7 +45,8 @@ struct flb_http_client *request_do(struct flb_aws_client *aws_client,
                                    int method, const char *uri,
                                    const char *body, size_t body_len,
                                    struct flb_aws_header *dynamic_headers,
-                                   size_t dynamic_headers_len);
+                                   size_t dynamic_headers_len,
+                                   size_t http_buffer_size);
 
 /*
  * https://service.region.amazonaws.com(.cn)
@@ -152,14 +153,16 @@ struct flb_http_client *flb_aws_client_request(struct flb_aws_client *aws_client
                                                const char *body, size_t body_len,
                                                struct flb_aws_header
                                                *dynamic_headers,
-                                               size_t dynamic_headers_len)
+                                               size_t dynamic_headers_len,
+                                               size_t http_buffer_size)
 {
     struct flb_http_client *c = NULL;
 
     //TODO: Need to think more about the retry strategy.
 
     c = request_do(aws_client, method, uri, body, body_len,
-                   dynamic_headers, dynamic_headers_len);
+                   dynamic_headers, dynamic_headers_len,
+                   http_buffer_size);
 
     /*
      * 400 or 403 could indicate an issue with credentials- so we check for auth
@@ -269,7 +272,8 @@ struct flb_http_client *request_do(struct flb_aws_client *aws_client,
                                    int method, const char *uri,
                                    const char *body, size_t body_len,
                                    struct flb_aws_header *dynamic_headers,
-                                   size_t dynamic_headers_len)
+                                   size_t dynamic_headers_len,
+                                   size_t http_buffer_size)
 {
     size_t b_sent;
     int ret;
@@ -298,6 +302,10 @@ struct flb_http_client *request_do(struct flb_aws_client *aws_client,
                         body, body_len,
                         aws_client->host, aws_client->port,
                         aws_client->proxy, aws_client->flags);
+
+    if (http_buffer_size > 0) {
+        flb_http_buffer_size(c, http_buffer_size);
+    }
 
     if (!c) {
         if (aws_client->debug_only == FLB_TRUE) {

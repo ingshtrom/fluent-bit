@@ -347,7 +347,7 @@ static int http_credentials_request(struct flb_aws_provider_http
 
     c = client->client_vtable->request(client, FLB_HTTP_GET,
                                        implementation->path, NULL, 0,
-                                       NULL, 0);
+                                       NULL, 0, 0);
 
     if (!c || c->resp.status != 200) {
         flb_debug("[aws_credentials] http credentials request failed");

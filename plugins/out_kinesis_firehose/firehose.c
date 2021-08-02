@@ -383,6 +383,11 @@ static int cb_firehose_exit(void *data, struct flb_config *config)
 /* Configuration properties map */
 static struct flb_config_map config_map[] = {
     {
+     FLB_CONFIG_MAP_SIZE, "buffer_size", "32K",
+     0, FLB_TRUE, offsetof(struct flb_firehose, http_buffer_size),
+     "HTTP client buffer size to receive response from AWS API",
+    },
+    {
      FLB_CONFIG_MAP_STR, "region", NULL,
      0, FLB_TRUE, offsetof(struct flb_firehose, region),
      "The AWS region of your delivery stream"

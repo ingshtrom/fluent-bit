@@ -48,7 +48,8 @@ typedef struct flb_http_client *(flb_aws_client_request_fn)
                                 int method, const char *uri,
                                 const char *body, size_t body_len,
                                 struct flb_aws_header *dynamic_headers,
-                                size_t dynamic_headers_len);
+                                size_t dynamic_headers_len,
+                                size_t http_buffer_size);
 
 /* TODO: Eventually will need to add a way to call flb_http_buffer_size */
 

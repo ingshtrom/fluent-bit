@@ -88,6 +88,7 @@ struct flb_firehose {
     const char *log_key;
     char *sts_endpoint;
     int custom_endpoint;
+    size_t http_buffer_size;
 
     /* must be freed on shutdown if custom_endpoint is not set */
     char *endpoint;

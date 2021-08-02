@@ -615,7 +615,7 @@ int flb_imds_request(struct flb_aws_client *client, char *metadata_path,
     flb_debug("[imds] Using instance metadata V1");
     c = client->client_vtable->request(client, FLB_HTTP_GET,
                                        metadata_path, NULL, 0,
-                                       NULL, 0);
+                                       NULL, 0, 0);
 
     if (!c) {
         return -1;

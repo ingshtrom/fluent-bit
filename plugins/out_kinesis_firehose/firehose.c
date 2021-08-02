@@ -383,7 +383,7 @@ static int cb_firehose_exit(void *data, struct flb_config *config)
 /* Configuration properties map */
 static struct flb_config_map config_map[] = {
     {
-     FLB_CONFIG_MAP_SIZE, "buffer_size", "32K",
+     FLB_CONFIG_MAP_SIZE, "http_buffer_size", "32K",
      0, FLB_TRUE, offsetof(struct flb_firehose, http_buffer_size),
      "HTTP client buffer size to receive response from AWS API",
     },
